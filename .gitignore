@@ -1,0 +1,30 @@
+#Entorno virtual
+.venv/
+venv/
+env/
+
+#Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+#Variables entorno
+.env
+
+#Streamlit
+.streamlit/secrets.toml
+
+#IDE
+.idea/
+.vscode/
+
+#Archivos
+*.log
+informe_agente_multimodal_*.md
+
+#Modelos 
+*.gguf
+*.bin
+*.safetensors
+models/
