@@ -14,7 +14,9 @@ Antes de entrar en mas materia, voy a explicar la instalación.
 
 INSTALACIÓN
 Lo primero seria clonar el repositorio, si es desde una terminal o consola de comandos:
+
 git clone https://github.com/Shaston/Agente_multimodal_IA_AC2.git cd Agente_multimodal_IA_AC2
+
 Si quieres de manera grafica, en el desplegable de code y a download zip.
 
 Lo siguiente es un entorno virtual, en mi caso lo hice desde pycharm ya que me da el entorno virtual y mas cosas..
@@ -49,7 +51,122 @@ Deberia abrirse una ventana del navegador, si no es asi usar la url http://local
 
 Y con eso ya podrias acceder y usar el modelo para ver sus capacidades... ahora vamos con un poco mas de explicación sobre arquitectura, modelo, escenarios, etc..
 
+DOMINIO o orientación del agente, serian para las siguientes tareas:
+
+-Diagnóstico de errores técnicos
+-Análisis de capturas de pantalla
+-Revisión de logs
+-Identificación de anomalías en CSV
+-Análisis de documentación técnica
+-Generación de recomendaciones del tipo hardening
+-Apoyo a la documentación de incidencias
+
+FUNCIONES PRINCIPALES
+
+-Carga de evidencias en formato PDF, CSV, imagen, TXT, LOG y Markdown
+-Análisis multimodal de capturas de pantalla
+-Extracción de texto de PDFs mediante PymuPDF
+-Búsqueda de páginas concretas dentro de PDFs "largos"
+-Resumen automático de CSVs con pandas
+-Conversación contextual durante la sesión
+
+Tres modos de respuesta:
+-Respuesta breve
+-Análisis técnico
+-Informe completo
+
+Exportación de la última respuesta como informe Markdown.
+
+ARQUITECTURA GENERAL
+
+El flujo principal seria:
+
+1. El usuario carga una evidencia desde la interfaz de Streamlit.
+2. El sistema detecta el tipo de archivo.
+3. Se aplica un procesamiento específico según el formato:
+   
+-PDF-> extracción página a página con PyMuPDF.
+
+-CSV-> resumen estructurado con pandas.
+
+-Imagen-> conversión a formato base64/data URL para el modelo multimodal.
+
+-TXT, LOG o MD: decodificación y recorte controlado de contexto.
+
+4. LangChain construye el prompt adecuado según el tipo de entrada.
+5. El modelo local servido por LM Studio genera la respuesta.
+6. Streamlit muestra el análisis en una interfaz conversacional.
+7. La última respuesta puede exportarse como informe Markdown.
+
+TECNOLOGÍAS UTILIZADAS
+
+Python =>3.10 
+
+Streamlit
+
+LangChain
+
+langchain-openai
+
+langchain-community
+
+LM Studio
+Qwen3-VL-30B-A3B-Instruct (bajado de huggingface https://huggingface.co/lmstudio-community/Qwen3-VL-30B-A3B-Instruct-GGUF)
+
+pandas
+
+PymuPDF
+
+Pillow
+
+python-dotenv
+
+MODELO UTILIZADO
 
 
+qwen3-vl-30b-a3b-instruct desde LM Studio y se expone mediante el endpoint local http://127.0.0.1:1234/v1
+
+La aplicación espera que LM Studio esté abierto, que el servidor local esté activo y que el modelo esté cargado antes de ejecutar Streamlit.
 
 
+EJEMPLOS DE USO
+
+Vamos con 3 escenarios con ejemplos o casos de uso.
+
+Escenario 1 análisis de captura técnica
+Se facilita una imagen y se pregunta al modelo sobre ella, la cual tiene que responder, en este caso uso el modo breve de respuesta para que no explaye. 
+
+<img width="2070" height="778" alt="image" src="https://github.com/user-attachments/assets/14a77700-fe19-4100-8957-0519d269192a" />
+
+Con ello se puede ver que analiza la imagen y da diagnostico y algunos consejos. 
+
+
+Escenario 2 análisis de CSV
+
+Se facilita un CSV y se pide que de info y detalles.
+<img width="2055" height="764" alt="image" src="https://github.com/user-attachments/assets/5e5dfa25-72e8-4624-8f3a-a75d889f8df0" />
+
+Con esto se comprueba el procesamiento tabular, la deteccion de patrones y la generacion de recomendaciones de seguridad.
+
+Escenario 3 análisis de PDF
+Se pide que busque algo concreto dentro del pdf. 
+
+<img width="2058" height="849" alt="image" src="https://github.com/user-attachments/assets/8c18f639-140f-480c-ba9b-850510c17f65" />
+
+Aqui se explayo un poco mas, porque tenia el modo de respuesta de analisis técnico. 
+
+Se comprueba la extracción de texto, busqueda por pagina y generacion de respuesta contextual basada en el documento.
+
+EXPORTACIÓN DE INFORMES
+
+Después de recibir una respuesta del agente, aparece un botón para descargar el último análisis en formato Markdown.
+
+El informe exportado incluye:
+
+Fecha de generación.
+Archivo analizado.
+Tipo de entrada.
+Modo de respuesta.
+Modelo local utilizado.
+Pregunta realizada.
+Respuesta generada por el agente.
