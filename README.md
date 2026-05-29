@@ -170,3 +170,27 @@ Modo de respuesta.
 Modelo local utilizado.
 Pregunta realizada.
 Respuesta generada por el agente.
+
+DEMO DE VIDEO 
+
+PENDIENTE
+El vídeo muestra el funcionamiento básico de la aplicación con tres escenarios:
+
+Análisis de una captura técnica.
+Análisis de un CSV.
+Análisis de un PDF.
+
+LIMITACIONES
+Teniendo en cuenta el modelo, hardware y algunas técnicas, las limitaciones son las siguientes.
+
+No implementa RAG vectorial, utiliza búsqueda simple por términos en PDF.
+
+No realiza OCR sobre PDF escaneados.
+
+No ejecuta acciones reales sobre sistemas externos.
+
+La calidad del análisis visual depende del modelo multimodal cargado.
+
+La velocidad depende del tamaño del modelo, cuantización, configuración de contexto y hardware disponible.
+
+La exportación se realiza en Markdown, no en PDF.
