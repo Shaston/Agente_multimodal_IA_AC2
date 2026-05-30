@@ -398,7 +398,7 @@ def build_markdown_report() -> str:
 
 ---
 
-## Nota técnica
+## Nota informativa
 
 Este informe ha sido generado por una aplicación local desarrollada con Streamlit,
 LangChain y un modelo multimodal servido desde LM Studio.
@@ -620,9 +620,7 @@ def render_chat_panel() -> None:
     st.session_state["last_question"] = user_question
     st.session_state["chat_history"].append({"role": "assistant", "content": answer})
 
-# panel de exportación separado para poder pintarlo después de generar la respuesta.
-# esto evita el problema que vimos: la sidebar se dibujaba antes de guardar last_answer,
-# y el botón solo aparecía al forzar un rerun cambiando el modo de respuesta.
+#panel de exportación separado para después de generar la respuesta, ya que antes tuve un problema con la sidebar que salia antes de guardar last_answer y soloaparecia al forzar un rerun cambiando el modo de respuesta
 def render_export_panel() -> None:
     """Muestra el botón de descarga del informe cuando ya existe una respuesta."""
     if not st.session_state.get("last_answer"):
