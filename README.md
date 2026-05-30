@@ -176,12 +176,9 @@ DEMO DE VIDEO
 
 
 PENDIENTE
-El vídeo muestra el funcionamiento básico de la aplicación con tres escenarios:
+El vídeo muestra el funcionamiento básico de la aplicación con tres escenarios.
 
 
-Análisis de una captura técnica.
-Análisis de un CSV.
-Análisis de un PDF.
 
 
 LIMITACIONES
