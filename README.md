@@ -175,9 +175,12 @@ Respuesta generada por el agente.
 DEMO DE VIDEO 
 
 
-PENDIENTE
+
 El vídeo muestra el funcionamiento básico de la aplicación con tres escenarios.
 
+Aqui os facilito la url -> https://github.com/Shaston/Agente_multimodal_IA_AC2/releases/tag/V1demo
+
+y por si acaso esta tambien -> https://drive.google.com/file/d/1aGXxnqLaGSu6aWeMChtMME5mUVJW_4We/view?usp=sharing
 
 
 
